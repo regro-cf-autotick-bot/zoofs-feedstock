@@ -7,24 +7,24 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/zoofs-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/zoofs-{{ version }}.tar.gz
   sha256: 08a7af6e9315aee1f9e5a821b7aec64fe5a419ba273dfb6b869492704019f78d
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python >=3.7
+    - python {{ python_min }}
   run:
     - colorlog >=6.6.0
     - numpy
     - pandas >=1.3.0
     - plotly >=5.6.0
-    - python >=3.7
+    - python >={{ python_min }}
     - scipy >=1.4.1
 
 test:
@@ -34,6 +34,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jaswinder9051998/zoofs
